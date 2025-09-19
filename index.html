@@ -3,29 +3,40 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Student Employment Platform</title>
+  <title>ZYND: Student Employment Platform</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-100 font-sans">
-  <!-- Navbar -->
-  <nav class="bg-blue-600 text-white p-4 sticky top-0 shadow-md">
+  <!-- Navbar with SVG Logo -->
+  <nav class="bg-blue-900 text-white p-4 sticky top-0 shadow-lg">
     <div class="container mx-auto flex justify-between items-center">
-      <h1 class="text-2xl font-bold">StudentJobs</h1>
+      <a href="/" class="flex items-center">
+        <div class="h-[40px] w-[140px] xl:h-[46px] xl:w-[164px] [&>svg]:size-full">
+          <svg width="140" height="40" viewBox="0 0 140 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20.0231 21.2304L19.9436 21.3074L17.4171 23.7662L14.802 21.2208L17.3796 18.7128L17.4076 18.6851L17.4171 18.6758L19.9436 21.1346L20.0326 21.2208L20.0231 21.2304ZM31.019 10.5512L28.368 7.97083L19.2921 16.8034V4.30292H15.5422V16.848L6.42042 7.97083L3.76894 10.5512L12.8574 19.3965H0V23.0455H12.8776L3.76894 31.91L6.42042 34.4908L15.5422 25.6136V38.1587H19.2921V25.6583L28.368 34.4908L31.019 31.91L21.9104 23.0455H34.788V19.3965H21.9309L31.019 10.5512Z" fill="white"></path>
+            <path d="M43.7921 29.6626H58.8748V33.5628H38.1548V30.117L52.3788 10.957H38.9761V7.0568H58.0535V10.5026L43.7921 29.6626Z" fill="white"></path>
+            <path d="M75.8861 12.7367H80.4407L70.3234 37.6523C69.8007 39.0534 68.4567 40 66.9634 40H60.8407V36.3649H66.6647L68.27 32.4268L60.318 12.7367H64.8354L70.3607 27.7315L75.8861 12.7367Z" fill="white"></path>
+            <path d="M83.4157 33.5628V12.7367H87.4478V15.7281H87.5224C88.5678 14.0241 90.4344 12.1308 93.7571 12.1308C98.2371 12.1308 101 15.3873 101 20.4234V33.5628H96.8931V20.7642C96.8931 17.167 95.0638 15.8417 92.6744 15.8417C89.7998 15.8417 87.5224 17.8864 87.5224 21.8244V33.5628H83.4157Z" fill="white"></path>
+            <path d="M121.042 32.5404C121.042 31.7831 121.042 31.1773 121.117 30.3442H121.042C119.437 32.8812 116.861 34.1687 114.023 34.1687C108.946 34.1687 104.578 30.2306 104.578 22.9604C104.578 15.9552 108.946 12.1308 114.023 12.1308C117.01 12.1308 119.549 13.4561 121.042 15.9552H121.117C121.042 15.0843 121.042 14.4406 121.042 13.6454V3.27022H125.149V33.5628H121.042V32.5404ZM115.069 30.5714C118.839 30.5336 121.042 27.1635 121.042 22.9225C121.042 18.9088 118.839 15.7659 115.069 15.7281C111.298 15.6902 108.834 18.6059 108.834 22.9604C108.834 27.5043 111.298 30.6093 115.069 30.5714Z" fill="white"></path>
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M135.603 2.72195C135.533 2.70713 135.462 2.70713 135.393 2.72195H134.282L134.314 4.42348L135.29 4.40464C135.97 4.39657 136.588 4.34544 136.574 3.49805C136.562 2.89814 136.105 2.73539 135.603 2.72059M135.251 5.10003L136.71 7.45256L137.617 7.44583L136.062 5.05969C136.251 5.05598 136.438 5.01309 136.612 4.93363C136.785 4.85417 136.94 4.73976 137.068 4.59744C137.196 4.45512 137.295 4.28783 137.357 4.10577C137.419 3.92369 137.445 3.73065 137.431 3.5384C137.421 2.46234 136.769 1.99559 135.512 2.01308L133.455 2.04539L133.53 7.49829L134.35 7.47275L134.321 5.12155L135.251 5.10003ZM135.25 0.795794C134.476 0.780059 133.715 0.999157 133.065 1.42498C132.414 1.85081 131.904 2.46398 131.6 3.18583C131.295 3.90769 131.21 4.70533 131.355 5.47649C131.501 6.24766 131.87 6.95718 132.416 7.51409C132.961 8.07101 133.659 8.44991 134.418 8.60224C135.178 8.75456 135.964 8.67341 136.678 8.36904C137.391 8.06472 137.999 7.55115 138.423 6.89417C138.847 6.23721 139.068 5.46679 139.057 4.68171C139.064 4.17151 138.97 3.66506 138.782 3.19203C138.593 2.71899 138.314 2.28889 137.959 1.92696C137.604 1.56503 137.182 1.27856 136.717 1.08432C136.252 0.890086 135.753 0.791986 135.25 0.795794ZM135.235 0.000893249C134.314 0.0206357 133.419 0.316555 132.664 0.851414C131.908 1.38627 131.325 2.13612 130.989 3.00637C130.653 3.87662 130.578 4.82834 130.774 5.74154C130.971 6.65475 131.429 7.48856 132.092 8.13786C132.754 8.78718 133.592 9.22289 134.499 9.3901C135.406 9.55731 136.341 9.44845 137.186 9.07745C138.032 8.70637 138.751 8.0896 139.251 7.30495C139.752 6.52029 140.012 5.60282 140 4.66825C139.99 4.04409 139.86 3.42799 139.614 2.85527C139.37 2.28255 139.016 1.76447 138.573 1.33082C138.13 0.897169 137.608 0.556482 137.035 0.328254C136.462 0.100026 135.85 -0.011223 135.235 0.000893249Z" fill="white"></path>
+          </svg>
+        </div>
+      </a>
       <ul class="flex space-x-6">
-        <li><a href="#home" class="hover:underline">Home</a></li>
-        <li><a href="#jobs" class="hover:underline">Job Listings</a></li>
-        <li><a href="#about" class="hover:underline">About</a></li>
-        <li><a href="#contact" class="hover:underline">Contact</a></li>
+        <li><a href="#home" class="hover:text-gray-300">Home</a></li>
+        <li><a href="#jobs" class="hover:text-gray-300">Job Listings</a></li>
+        <li><a href="#about" class="hover:text-gray-300">About</a></li>
+        <li><a href="#contact" class="hover:text-gray-300">Contact</a></li>
       </ul>
     </div>
   </nav>
 
   <!-- Hero Section -->
-  <section id="home" class="bg-blue-500 text-white py-20">
+  <section id="home" class="bg-gradient-to-r from-blue-700 to-blue-500 text-white py-20">
     <div class="container mx-auto text-center">
-      <h2 class="text-4xl font-bold mb-4">Find Your Dream Job as a Student</h2>
-      <p class="text-lg mb-6">Explore part-time, internships, and freelance opportunities tailored for students.</p>
-      <a href="#jobs" class="bg-white text-blue-600 px-6 py-3 rounded-full font-semibold hover:bg-gray-200">Browse Jobs</a>
+      <h2 class="text-4xl font-bold mb-4">Find Your Dream Job with ZYND</h2>
+      <p class="text-lg mb-6 max-w-2xl mx-auto">Explore part-time, internships, and freelance opportunities tailored for students.</p>
+      <a href="#jobs" class="bg-white text-blue-900 px-6 py-3 rounded-lg font-semibold hover:bg-gray-200">Browse Jobs</a>
     </div>
   </section>
 
@@ -42,8 +53,8 @@
   <!-- About Section -->
   <section id="about" class="bg-gray-200 py-16">
     <div class="container mx-auto text-center">
-      <h2 class="text-3xl font-bold mb-4">About StudentJobs</h2>
-      <p class="text-lg max-w-2xl mx-auto">StudentJobs is a platform dedicated to connecting students with flexible employment opportunities. Whether you're looking for part-time work, internships, or freelance gigs, we’ve got you covered.</p>
+      <h2 class="text-3xl font-bold mb-4">About ZYND</h2>
+      <p class="text-lg max-w-2xl mx-auto">ZYND is a platform dedicated to connecting students with flexible employment opportunities. Whether you're looking for part-time work, internships, or freelance gigs, we’ve got you covered.</p>
     </div>
   </section>
 
@@ -62,9 +73,9 @@
   </section>
 
   <!-- Footer -->
-  <footer class="bg-blue-600 text-white py-6">
+  <footer class="bg-blue-900 text-white py-6">
     <div class="container mx-auto text-center">
-      <p>&copy; 2025 StudentJobs. All rights reserved.</p>
+      <p>&copy; 2025 ZYND. All rights reserved.</p>
     </div>
   </footer>
 
@@ -80,7 +91,7 @@
     
     jobs.forEach(job => {
       const jobCard = document.createElement('div');
-      jobCard.className = 'bg-white p-6 rounded-lg shadow-md';
+      jobCard.className = 'bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow';
       jobCard.innerHTML = `
         <h3 class="text-xl font-semibold mb-2">${job.title}</h3>
         <p class="text-gray-600 mb-2">${job.company} - ${job.location}</p>
