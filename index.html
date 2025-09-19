@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Employment Platform</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 font-sans">
+  <!-- Navbar -->
+  <nav class="bg-blue-600 text-white p-4 sticky top-0 shadow-md">
+    <div class="container mx-auto flex justify-between items-center">
+      <h1 class="text-2xl font-bold">StudentJobs</h1>
+      <ul class="flex space-x-6">
+        <li><a href="#home" class="hover:underline">Home</a></li>
+        <li><a href="#jobs" class="hover:underline">Job Listings</a></li>
+        <li><a href="#about" class="hover:underline">About</a></li>
+        <li><a href="#contact" class="hover:underline">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section id="home" class="bg-blue-500 text-white py-20">
+    <div class="container mx-auto text-center">
+      <h2 class="text-4xl font-bold mb-4">Find Your Dream Job as a Student</h2>
+      <p class="text-lg mb-6">Explore part-time, internships, and freelance opportunities tailored for students.</p>
+      <a href="#jobs" class="bg-white text-blue-600 px-6 py-3 rounded-full font-semibold hover:bg-gray-200">Browse Jobs</a>
+    </div>
+  </section>
+
+  <!-- Job Listings Section -->
+  <section id="jobs" class="py-16">
+    <div class="container mx-auto">
+      <h2 class="text-3xl font-bold text-center mb-8">Available Jobs</h2>
+      <div id="job-listings" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Job cards will be dynamically added here -->
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="bg-gray-200 py-16">
+    <div class="container mx-auto text-center">
+      <h2 class="text-3xl font-bold mb-4">About StudentJobs</h2>
+      <p class="text-lg max-w-2xl mx-auto">StudentJobs is a platform dedicated to connecting students with flexible employment opportunities. Whether you're looking for part-time work, internships, or freelance gigs, we’ve got you covered.</p>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="py-16">
+    <div class="container mx-auto text-center">
+      <h2 class="text-3xl font-bold mb-4">Get in Touch</h2>
+      <p class="text-lg mb-6">Have questions? Reach out to us!</p>
+      <div class="max-w-md mx-auto">
+        <input type="text" placeholder="Your Name" class="w-full p-3 mb-4 border rounded">
+        <input type="email" placeholder="Your Email" class="w-full p-3 mb-4 border rounded">
+        <textarea placeholder="Your Message" class="w-full p-3 mb-4 border rounded h-32"></textarea>
+        <button class="bg-blue-600 text-white px-6 py-3 rounded-full font-semibold hover:bg-blue-700" onclick="alert('Message sent!')">Send Message</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-blue-600 text-white py-6">
+    <div class="container mx-auto text-center">
+      <p>&copy; 2025 StudentJobs. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- JavaScript for dynamic job listings -->
+  <script>
+    const jobs = [
+      { title: "Part-Time Barista", company: "Coffee Shop", location: "Remote", description: "Flexible hours, perfect for students!" },
+      { title: "Web Dev Intern", company: "Tech Startup", location: "New York, NY", description: "Learn and grow with a fast-paced team." },
+      { title: "Freelance Graphic Designer", company: "Creative Agency", location: "Remote", description: "Create stunning visuals for clients." },
+    ];
+
+    const jobListings = document.getElementById('job-listings');
+    
+    jobs.forEach(job => {
+      const jobCard = document.createElement('div');
+      jobCard.className = 'bg-white p-6 rounded-lg shadow-md';
+      jobCard.innerHTML = `
+        <h3 class="text-xl font-semibold mb-2">${job.title}</h3>
+        <p class="text-gray-600 mb-2">${job.company} - ${job.location}</p>
+        <p class="text-gray-700">${job.description}</p>
+        <button class="mt-4 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Apply Now</button>
+      `;
+      jobListings.appendChild(jobCard);
+    });
+  </script>
+</body>
+</html>
