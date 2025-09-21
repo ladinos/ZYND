@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ZYND: Student Employment Platform</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Font Import for Neue Haas Grotesk Light */
+    @font-face {
+      font-family: 'Neue Haas Grotesk';
+      src: url('fonts/NeueHaasGrotesk-Light.woff2') format('woff2');
+      font-weight: 300;
+      font-style: normal;
+    }
+    /* Loader Styles (Unchanged) */
+    .loader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 50;
+      background: #0A1A4D;
+      pointer-events: none;
+    }
+    .loader-inner {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+    }
+    .loader-sun-wrap {
+      --sd-blur: 0rem;
+      --sd-spread: 0rem;
+      --sd-alpha: 0;
+    }
+    .loader-sun-inner {
+      --mask-top-1: 194%;
+      --mask-1: radial-gradient(circle at 50% var(--mask-top-1), black 0%, black .43em, transparent .43em, transparent .47em, black .47em, black 100%);
+      mask-image: var(--mask-1);
+      -webkit-mask-image: var(--mask-1);
+    }
+    .loader-sun-outer {
+      --mask-top-2: 199%;
+      --mask-2: radial-gradient(circle at 50% var(--mask-top-2), black 0%, black .47em, transparent .47em, transparent .51em, black .51em, black 100%);
+      mask-image: var(--mask-2);
+      -webkit-mask-image: var(--mask-2);
+    }
+    .loader-bg-gradient {
+      background-image: radial-gradient(circle at 50% 57%, #4B6FDD 4.0581%, rgba(10, 26, 77, 0.204) 106.087%);
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+    .loader-bg-back {
+      background: #0A1A4D;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+    .loader-bg-front {
+      background: #0A1A4D;
+      position: absolute;
+      top: 50%;
+      left: 0;
+      width: 100%;
+      height: 50%;
+      z-index: 100;
+      opacity: 1 !important;
+    }
+    .loader-sun-logo-ic svg {
+      width: 100px;
+      height: 100;
+    }
+    .loader-text-inner-txt {
+      font-size: 1rem;
+      font-weight: 500;
+      color: white;
+      text-align: center;
+    }
+    .loader-sun-glow {
+      background: radial-gradient(circle, #FFFFFF 10%, transparent 70%);
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      filter: brightness(1.2);
+    }
+    /* Navbar Styles (Unchanged) */
+    .nav-link {
+      font-family: 'Neue Haas Grotesk', Helvetica, sans-serif;
+      font-size: 17.4px;
+      font-weight: 300;
+      line-height: 23.4px;
+      transform: translateY(2px); /* Adjust vertical alignment */
+    }
+    .login-button {
+      border-radius: 8px;
+      border: 1px solid #00EC25;
+      background: transparent;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      padding: 0 16px;
+      height: 49px;
+    }
+    .login-text {
+      color: #FFF;
+      font-family: 'Neue Haas Grotesk', Helvetica, sans-serif;
+      font-size: 17.4px;
+      font-weight: 300;
+      line-height: 12.6px;
+      margin-right: 8px;
+    }
+    .login-icon svg {
+      width: 13px;
+      height: 13px;
+    }
+    .apply-button {
+      border-radius: 8px;
+      background: #00EC25;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      padding: 0 16px;
+      height: 49px;
+    }
+    .apply-text {
+      color: #1C1C1C;
+      font-family: 'Neue Haas Grotesk', Helvetica, sans-serif;
+      font-size: 17.4px;
+      font-weight: 300;
+      line-height: 12.6px;
+      margin-right: 8px;
+    }
+    .apply-icon svg {
+      width: 13px;
+      height: 13px;
+    }
+    /* Hero Section Styles */
+    .hero-section {
+      font-family: 'Neue Haas Grotesk', Helvetica, sans-serif;
+      font-weight: 300; /* Light font */
+    }
+    .hero-icon {
+      margin-bottom: 1rem;
+    }
+    .hero-headline {
+      font-size: 80px;
+      line-height: 0.9em;
+      letter-spacing: -0.02em;
+      font-weight: 300; /* Light */
+      color: #FFF;
+      white-space: pre-wrap;
+    }
+    .hero-subtext {
+      font-size: 18px;
+      line-height: 140%;
+      font-weight: 300; /* Light */
+      color: #FFF;
+      margin-top: 1rem;
+    }
+    .hero-button {
+      background-color: #00EC25;
+      border-radius: 8px;
+      padding: 0.75rem 1.5rem;
+      font-size: 17.4px;
+      font-weight: 300; /* Light */
+      line-height: 12.6px;
+      color: #1C1C1C;
+      display: inline-flex;
+      align-items: center;
+      text-decoration: none;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+      margin-top: 1.5rem;
+    }
+    .hero-button:hover {
+      background-color: #00D220;
+      transform: translateY(-2px);
+    }
+    .hero-reviews {
+      font-size: 18px;
+      line-height: 140%;
+      font-weight: 300; /* Light */
+      color: #FFF;
+      margin-top: 1rem;
+    }
+    .hero-image {
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); /* Subtle shadow at bottom */
+      backdrop-filter: blur(2px); /* Very subtle glazed glass effect */
+      background: rgba(255, 255, 255, 0.05); /* Subtle overlay */
+      border-radius: 8px;
+      width: 100%;
+      height: auto;
+    }
+    .hero-slider {
+      backdrop-filter: blur(10px); /* Frosted iOS style */
+      background: rgba(255, 255, 255, 0.2); /* Translucent */
+      border-radius: 100px;
+      padding: 4px;
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 1rem;
+      width: 120px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .slider-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.4);
+      transition: background-color 0.3s;
+    }
+    .slider-dot.active {
+      background: #FFF;
+    }
+    .hero-caption {
+      font-size: 14px;
+      font-weight: 300; /* Light */
+      color: #FFF;
+      margin-top: 0.5rem;
+      text-align: center;
+      opacity: 0.8;
+    }
+  </style>
+</head>
+<body class="bg-gray-100 font-sans">
+  <!-- Loader (Unchanged) -->
+  <div class="loader">
+    <div class="loader-inner">
+      <div class="loader-bg-back">
+        <div class="loader-bg-gradient" style="opacity: 0.6;"></div>
+      </div>
+      <div class="loader-sun">
+        <div class="loader-sun-logo">
+          <div class="loader-sun-logo-ic w-embed">
+            <svg width="100" height="75" viewBox="0 0 35 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M20.0231 21.2304L19.9436 21.3074L17.4171 23.7662L14.802 21.2208L17.3796 18.7128L17.4076 18.6851L17.4171 18.6758L19.9436 21.1346L20.0326 21.2208L20.0231 21.2304ZM31.019 10.5512L28.368 7.97083L19.2921 16.8034V4.30292H15.5422V16.848L6.42042 7.97083L3.76894 10.5512L12.8574 19.3965H0V23.0455H12.8776L3.76894 31.91L6.42042 34.4908L15.5422 25.6136V38.1587H19.2921V25.6583L28.368 34.4908L31.019 31.91L21.9104 23.0455H34.788V19.3965H21.9309L31.019 10.5512Z" fill="#ADD8E6"></path>
+            </svg>
+          </div>
+        </div>
+        <div class="loader-sun-wrap" style="--sd-alpha: 0; --sd-spread: 0rem; --sd-blur: 0rem;">
+          <div class="loader-sun-outer" style="--mask-top-2: 199%;">
+            <div class="loader-sun-inner" style="--mask-top-1: 194%;"></div>
+          </div>
+        </div>
+        <div class="loader-sun-glow"></div>
+      </div>
+      <div class="loader-bg-front">
+        <div class="loader-text">
+          <div class="loader-text-inner">
+            <div class="loader-text-welcome">
+              <div class="loader-text-inner-txt">Empowering Student Futures</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Navbar (Unchanged) -->
+  <nav id="navbar" class="opacity-0 bg-[#0577FF] border-b border-[#091F83] p-4 sticky top-0 z-[60]">
+    <div class="container mx-auto flex justify-between items-center">
+      <!-- Logo -->
+      <a href="/" class="flex items-center">
+        <svg width="140" height="40" viewBox="0 0 140 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <g clip-path="url(#clip0_1_3266)">
+            <path d="M20.0231 21.2304L19.9436 21.3074L17.4171 23.7662L14.802 21.2208L17.3796 18.7128L17.4076 18.6851L17.4171 18.6758L19.9436 21.1346L20.0326 21.2208L20.0231 21.2304ZM31.019 10.5512L28.368 7.97083L19.2921 16.8034V4.30292H15.5422V16.848L6.42042 7.97083L3.76894 10.5512L12.8574 19.3965H0V23.0455H12.8776L3.76894 31.91L6.42042 34.4908L15.5422 25.6136V38.1587H19.2921V25.6583L28.368 34.4908L31.019 31.91L21.9104 23.0455H34.788V19.3965H21.9309L31.019 10.5512Z" fill="white"/>
+            <path d="M43.7921 29.6626H58.8748V33.5628H38.1548V30.117L52.3788 10.957H38.9761V7.0568H58.0535V10.5026L43.7921 29.6626Z" fill="white"/>
+            <path d="M75.8862 12.7367H80.4408L70.3235 37.6523C69.8008 39.0534 68.4568 40 66.9635 40H60.8408V36.3649H66.6648L68.2701 32.4268L60.3181 12.7367H64.8355L70.3608 27.7315L75.8862 12.7367Z" fill="white"/>
+            <path d="M83.4158 33.5628V12.7367H87.4479V15.7281H87.5225C88.5679 14.0241 90.4345 12.1308 93.7572 12.1308C98.2372 12.1308 101 15.3873 101 20.4234V33.5628H96.8932V20.7642C96.8932 17.167 95.0639 15.8417 92.6745 15.8417C89.7999 15.8417 87.5225 17.8864 87.5225 21.8244V33.5628H83.4158Z" fill="white"/>
+            <path d="M121.042 32.5404C121.042 31.7831 121.042 31.1773 121.117 30.3442H121.042C119.437 32.8812 116.861 34.1687 114.023 34.1687C108.946 34.1687 104.578 30.2306 104.578 22.9604C104.578 15.9552 108.946 12.1308 114.023 12.1308C117.01 12.1308 119.549 13.4561 121.042 15.9552H121.117C121.042 15.0843 121.042 14.4406 121.042 13.6454V3.27022H125.149V33.5628H121.042V32.5404ZM115.069 30.5714C118.839 30.5336 121.042 27.1635 121.042 22.9225C121.042 18.9088 118.839 15.7659 115.069 15.7281C111.298 15.6902 108.834 18.6059 108.834 22.9604C108.834 27.5043 111.298 30.6093 115.069 30.5714Z" fill="white"/>
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M135.603 2.72195C135.533 2.70713 135.462 2.70713 135.393 2.72195H134.282L134.314 4.42348L135.29 4.40464C135.97 4.39657 136.588 4.34544 136.574 3.49805C136.562 2.89814 136.105 2.73539 135.603 2.72059M135.251 5.10003L136.71 7.45256L137.617 7.44583L136.062 5.05969C136.251 5.05598 136.438 5.01309 136.612 4.93363C136.785 4.85417 136.94 4.73976 137.068 4.59744C137.196 4.45512 137.295 4.28783 137.357 4.10577C137.419 3.92369 137.445 3.73065 137.431 3.5384C137.421 2.46234 136.769 1.99559 135.512 2.01308L133.455 2.04539L133.53 7.49829L134.35 7.47275L134.321 5.12155L135.251 5.10003ZM135.25 0.795794C134.476 0.780059 133.715 0.999157 133.065 1.42498C132.414 1.85081 131.904 2.46398 131.6 3.18583C131.295 3.90769 131.21 4.70533 131.355 5.47649C131.501 6.24766 131.87 6.95718 132.416 7.51409C132.961 8.07101 133.659 8.44991 134.418 8.60224C135.178 8.75456 135.964 8.67341 136.678 8.36904C137.391 8.06472 137.999 7.55115 138.423 6.89417C138.847 6.23721 139.068 5.46679 139.057 4.68171C139.064 4.17151 138.97 3.66506 138.782 3.19203C138.593 2.71899 138.314 2.28889 137.959 1.92696C137.604 1.56503 137.182 1.27856 136.717 1.08432C136.252 0.890086 135.753 0.791986 135.25 0.795794ZM135.235 0.000893251C134.314 0.0206357 133.419 0.316555 132.664 0.851414C131.908 1.38627 131.325 2.13612 130.989 3.00637C130.653 3.87662 130.578 4.82834 130.774 5.74154C130.971 6.65475 131.429 7.48856 132.092 8.13786C132.754 8.78718 133.592 9.22289 134.499 9.3901C135.406 9.55731 136.341 9.44845 137.186 9.07745C138.032 8.70637 138.751 8.0896 139.251 7.30495C139.752 6.52029 140.012 5.60282 140 4.66825C139.99 4.04409 139.86 3.42799 139.614 2.85527C139.37 2.28255 139.016 1.76447 138.573 1.33082C138.13 0.897169 137.608 0.556482 137.035 0.328254C136.462 0.100026 135.85 -0.011223 135.235 0.000893251Z" fill="white"/>
+          </g>
+          <defs>
+            <clipPath id="clip0_1_3266">
+              <rect width="140" height="40" fill="white"/>
+            </clipPath>
+          </defs>
+        </svg>
+      </a>
+      <!-- Navigation Links and Buttons -->
+      <div class="flex items-center gap-12">
+        <a href="#home" class="nav-link text-white hover:text-gray-300">Home</a>
+        <a href="#about" class="nav-link text-white hover:text-gray-300">About</a>
+        <a href="#jobs" class="nav-link text-white hover:text-gray-300">Job Listings</a>
+        <a href="#contact" class="nav-link text-white hover:text-gray-300">Contact</a>
+        <a href="#login" class="login-button ml-[72px]">
+          <span class="login-text">Log in</span>
+          <span class="login-icon">
+            <svg width="13" height="13" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <g clip-path="url(#clip0_1_3149)">
+                <path d="M13.0392 12.8361L12.9982 1.57013H1.77319V2.51913L11.3482 2.56013L1.77319 12.1341L2.43319 12.7951L12.0082 3.22113L12.0492 12.8361H13.0392Z" fill="white" stroke="white" stroke-width="0.216667" stroke-miterlimit="8.66667"/>
+              </g>
+              <defs>
+                <clipPath id="clip0_1_3149">
+                  <rect width="13" height="13" fill="white" transform="translate(0.90625 0.703125)"/>
+                </clipPath>
+              </defs>
+            </svg>
+          </span>
+        </a>
+        <a href="#apply" class="apply-button">
+          <span class="apply-text">Apply now</span>
+          <span class="apply-icon">
+            <svg width="13" height="13" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <g clip-path="url(#clip0_1_3149)">
+                <path d="M13.0392 12.8361L12.9982 1.57013H1.77319V2.51913L11.3482 2.56013L1.77319 12.1341L2.43319 12.7951L12.0082 3.22113L12.0492 12.8361H13.0392Z" fill="black" stroke="black" stroke-width="0.216667" stroke-miterlimit="8.66667"/>
+              </g>
+              <defs>
+                <clipPath id="clip0_1_3149">
+                  <rect width="13" height="13" fill="white" transform="translate(0.90625 0.703125)"/>
+                </clipPath>
+              </defs>
+            </svg>
+          </span>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section (Updated) -->
+  <header id="home" class="hero-section bg-[#0577FF] py-16 md:py-20 opacity-0">
+    <div class="container mx-auto px-4">
+      <div class="flex flex-col md:flex-row items-center">
+        <!-- Text Content -->
+        <div class="md:w-1/2 mb-8 md:mb-0">
+          <div class="hero-icon mb-4">
+            <svg width="66" height="66" viewBox="0 0 66 66" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="33" cy="33" r="32" stroke="white" stroke-width="2"/>
+              <text x="50%" y="50%" text-anchor="middle" dy=".3em" font-size="36" fill="white">$</text>
+            </svg>
+          </div>
+          <h1 class="hero-headline mb-2">Find Your Dream Job</h1>
+          <p class="hero-subtext mb-6">Flexible work for busy students</p>
+          <a href="#jobs" class="hero-button">
+            Get Started
+            <svg class="ml-2" width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12.133 12.133L12.092 0.867L0.867 0.867L0.867 1.816L10.442 1.857L0.867 11.431L1.527 12.092L11.102 2.518L11.143 12.133Z" fill="#1C1C1C" stroke="#1C1C1C" stroke-width="0.21666666666666667" stroke-miterlimit="8.666666666666668"/>
+            </svg>
+          </a>
+          <p class="hero-reviews">Over 50,000 ★★★★★ student reviews</p>
+        </div>
+        <!-- Image Slider -->
+        <div class="md:w-1/2 relative">
+          <div class="hero-image-slider w-full h-[400px] overflow-hidden">
+            <div class="hero-image-container flex transition-transform duration-500 ease-in-out" style="transform: translateX(0);">
+              <img src="images\STOCK_STUDENT_PHOTO_1.jpg" alt="Student 1" class="hero-image w-full h-full object-cover">
+              <img src="images\STOCK_STUDENT_PHOTO_2.jpg" alt="Student 2" class="hero-image w-full h-full object-cover hidden">
+              <img src="images\STOCK_STUDENT_PHOTO_3.jpg" alt="Student 3" class="hero-image w-full h-full object-cover hidden">
+            </div>
+          </div>
+          <div class="hero-slider">
+            <div class="slider-dot active"></div>
+            <div class="slider-dot"></div>
+            <div class="slider-dot"></div>
+          </div>
+          <p class="hero-caption">Student thriving in a remote internship</p>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Job Listings Section -->
+  <section id="jobs" class="py-16 opacity-0">
+    <div class="container mx-auto">
+      <h2 class="text-3xl font-bold text-center mb-8">Available Jobs</h2>
+      <div id="job-listings" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="bg-gray-200 py-16 opacity-0">
+    <div class="container mx-auto text-center">
+      <h2 class="text-3xl font-bold mb-4">About ZYND</h2>
+      <p class="text-lg max-w-2xl mx-auto">ZYND is a platform dedicated to connecting students with flexible employment opportunities. Whether you're looking for part-time work, internships, or freelance gigs, we've got you covered.</p>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="py-16 opacity-0">
+    <div class="container mx-auto text-center">
+      <h2 class="text-3xl font-bold mb-4">Get in Touch</h2>
+      <p class="text-lg mb-6">Have questions? Reach out to us!</p>
+      <div class="max-w-md mx-auto">
+        <input type="text" placeholder="Your Name" class="w-full p-3 mb-4 border rounded">
+        <input type="email" placeholder="Your Email" class="w-full p-3 mb-4 border rounded">
+        <textarea placeholder="Your Message" class="w-full p-3 mb-4 border rounded h-32"></textarea>
+        <button class="bg-blue-600 text-white px-6 py-3 rounded-full font-semibold hover:bg-blue-700" onclick="alert('Message sent!')">Send Message</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-blue-900 text-white py-6 opacity-0">
+    <div class="container mx-auto text-center">
+      <p>&copy; 2025 ZYND. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- GSAP Animation and Slider Script -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script>
+    gsap.registerPlugin();
+
+    const tl = gsap.timeline({
+      paused: true,
+      onComplete: () => {
+        gsap.set(".loader", { display: "none" });
+        gsap.to(["#navbar", "#home", "#jobs", "#about", "#contact", "footer"], {
+          opacity: 1,
+          duration: 1.5,
+          stagger: 0.4,
+          ease: "power1.out"
+        });
+      }
+    });
+
+    // Initial states
+    gsap.set(".loader", { opacity: 1 });
+    gsap.set(".loader-bg-back, .loader-bg-gradient, .loader-bg-front", { opacity: 0 });
+    gsap.set(".loader-sun", { opacity: 0, y: "80%" });
+    gsap.set(".loader-sun-wrap", { "--sd-alpha": 0, "--sd-spread": "0rem", "--sd-blur": "0rem" });
+    gsap.set(".loader-sun-inner", { "--mask-top-1": "194%" });
+    gsap.set(".loader-sun-outer", { "--mask-top-2": "199%" });
+    gsap.set(".loader-sun-glow", { opacity: 0, y: "100%" });
+    gsap.set(".loader-text", { opacity: 0 });
+    gsap.set(["#navbar", "#home", "#jobs", "#about", "#contact", "footer"], { opacity: 0 });
+
+    // Timeline
+    tl.to({}, { duration: 0.7 }) // dark background first 1 sec
+      .to(".loader-bg-back", { opacity: 1, duration: 0.8 })
+      .to(".loader-bg-gradient", { opacity: 0.6, duration: 1 }, "-=0.7")
+      .to(".loader-bg-front", { opacity: 1, duration: 0.8 }, "-=0.5")
+      .to(".loader-sun", { opacity: 1, y: "-10%", duration: 1.5, ease: "power2.inOut" }, "-=0.1")
+      .to(".loader-sun-wrap", { "--sd-alpha": 0.67, "--sd-spread": "2.3rem", "--sd-blur": "2.4rem", duration: 1.5 }, "-=1.5")
+      .to(".loader-sun-inner", { "--mask-top-1": "69%", duration: 1.5 }, "-=1.5")
+      .to(".loader-sun-outer", { "--mask-top-2": "99%", duration: 1.5 }, "-=1.5")
+      .to(".loader-sun-glow", { opacity: 0.4, y: "-10%", duration: 1.5, ease: "power2.inOut" }, "-=1.5")
+      .to(".loader-text", { opacity: 1, duration: 1 }, "-=1")
+      .to({}, { duration: 1 }) // linger 1 sec
+      .to(".loader-bg-front", { y: "100%", duration: 1.5, ease: "circ.in" })
+      .to(".loader", { opacity: 0, duration: 1.5, ease: "power2.out" });
+
+    // Job listings
+    const jobs = [
+      { title: "Part-Time Barista", company: "Coffee Shop", location: "Remote", description: "Flexible hours, perfect for students!" },
+      { title: "Web Dev Intern", company: "Tech Startup", location: "New York, NY", description: "Learn and grow with a fast-paced team." },
+      { title: "Freelance Graphic Designer", company: "Creative Agency", location: "Remote", description: "Create stunning visuals for clients." },
+    ];
+
+    const jobListings = document.getElementById('job-listings');
+    
+    jobs.forEach(job => {
+      const jobCard = document.createElement('div');
+      jobCard.className = 'bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow';
+      jobCard.innerHTML = `
+        <h3 class="text-xl font-semibold mb-2">${job.title}</h3>
+        <p class="text-gray-600 mb-2">${job.company} - ${job.location}</p>
+        <p class="text-gray-700">${job.description}</p>
+        <button class="mt-4 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Apply Now</button>
+      `;
+      jobListings.appendChild(jobCard);
+    });
+
+    // Slider Functionality
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.hero-image');
+    const dots = document.querySelectorAll('.slider-dot');
+    const captions = [
+      "Student thriving in a remote internship",
+      "Young professional excelling in a startup environment",
+      "Creative student designing for a global agency"
+    ];
+
+    function showSlide(index) {
+      const totalSlides = slides.length;
+      if (index >= totalSlides) currentSlide = 0;
+      else if (index < 0) currentSlide = totalSlides - 1;
+      else currentSlide = index;
+
+      const offset = -currentSlide * 100;
+      document.querySelector('.hero-image-container').style.transform = `translateX(${offset}%)`;
+
+      dots.forEach((dot, i) => {
+        dot.classList.toggle('active', i === currentSlide);
+      });
+      document.querySelector('.hero-caption').textContent = captions[currentSlide];
+    }
+
+    dots.forEach((dot, i) => {
+      dot.addEventListener('click', () => showSlide(i));
+    });
+
+    setInterval(() => showSlide(currentSlide + 1), 5000); // Auto-slide every 5 seconds
+
+    window.addEventListener('load', () => tl.play());
+  </script>
+</body>
+</html>
