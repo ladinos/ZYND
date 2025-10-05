@@ -2257,40 +2257,14 @@
         overflow: hidden;
       }
 
-      .new-section::before {
-        content: '';
-        position: absolute;
-        opacity: 0.3;
-        z-index: 0;
-        width: 127vh;
-        height: 127vh;
-        border: 1px solid rgba(224, 224, 224, 0.3);
-        border-radius: 50%;
-        top: 35%;
-        left: 65%;
-        transform: translate(-50%, -50%);
-        pointer-events: none;
-      }
 
-      .new-section::after {
-        content: '';
-        position: absolute;
-        width: 96vh;
-        height: 96vh;
-        border: 1px solid rgba(224, 224, 224, 0.3);
-        border-radius: 50%;
-        top: 35%;
-        left: 65%;
-        transform: translate(-50%, -50%);
-        pointer-events: none;
-      }
 
       .circle-star {
         position: absolute;
         width: 450px;
         height: 501px;
-        top: 25%;
-        left: 132%;
+        top: 16%;
+        left: 126%;
         transform: translate(-50%, -50%);
         pointer-events: none;
         z-index: 1;
@@ -2304,24 +2278,22 @@
 
       .new-section .section-content {
         max-width: 1425px;
-        height: 945px;
+        height: 783px;
         margin: 0 auto;
         position: relative;
-        border-top: 1px solid #dadada;
-        border-bottom: 1px solid #dadada;
       }
 
       .new-section .inner-content {
         position: relative;
         max-width: 1345px;
         height: 100%;
-        margin: 0 24px;
+        margin: 0 0 0 0;
       }
 
       .new-section .text-container {
         position: absolute;
-        top: 240px;
-        left: 32px;
+        top: 200px;
+        left: 8px;
         width: 700px;
         height: 400px;
         display: flex;
@@ -2521,6 +2493,30 @@
         overflow: visible;
       }
 
+      /* Responsive testimonial cards */
+      @media (max-width: 1200px) {
+        .testimonial-card {
+          height: 440px !important;
+        }
+        .testimonial-card[style*="right: -480px"] {
+          right: -350px !important;
+        }
+        .testimonial-card[style*="right: -816px"] {
+          right: -686px !important;
+        }
+      }
+      @media (max-width: 900px) {
+        .testimonial-card {
+          height: 520px !important;
+        }
+        .testimonial-card[style*="right: -350px"] {
+          right: -180px !important;
+        }
+        .testimonial-card[style*="right: -686px"] {
+          right: -516px !important;
+        }
+      }
+
       @media (max-width: 768px) {
         .new-section .text-container {
           width: 100%;
@@ -2539,15 +2535,13 @@
     <div class="section-content">
       <div class="inner-content">
         <div class="text-container">
-          <div class="circle-star">
-            <svg width="450" height="501" viewBox="0 0 35 39" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M20.0231 21.2304L19.9436 21.3074L17.4171 23.7662L14.802 21.2208L17.3796 18.7128L17.4076 18.6851L17.4171 18.6758L19.9436 21.1346L20.0326 21.2208L20.0231 21.2304ZM31.019 10.5512L28.368 7.97083L19.2921 16.8034V4.30292H15.5422V16.848L6.42042 7.97083L3.76894 10.5512L12.8574 19.3965H0V23.0455H12.8776L3.76894 31.91L6.42042 34.4908L15.5422 25.6136V38.1587H19.2921V25.6583L28.368 34.4908L31.019 31.91L21.9104 23.0455H34.788V19.3965H21.9309L31.019 10.5512Z" fill="none" stroke="rgba(224, 224, 224, 0.3)" stroke-width="0.08" stroke-opacity="1"/>
-            </svg>
-          </div>
-          <div class="heading-container">
-            <div class="text-line">Find quality talent efficiently and affordably for your business today</div>
-            <div class="subtitle-text">The new Employer experience delivering efficient recruitment, brand value, high ROI and a worthy candidate experience for just £360 (includes VAT) per shortlisted candidate.</div>
-            <div class="features-container" style="align-self: stretch; height: 104px; margin-top: 16px; margin-bottom: 16px; justify-content: flex-start; align-items: flex-start; gap: 108.84px; display: flex">
+
+          <div class="content-wrapper" style="position: relative; transform: translateY(-120px);">
+            <div class="heading-container">
+              <div class="text-line">Find quality talent efficiently and affordably for your business today</div>
+              <div class="subtitle-text" style="margin-bottom: 8px; font-size: 20px;">Introducing <span style="color: #0577FF;">ZyndSelect™</span>, an incredibly affordable, efficient and advanced way to find the quality talent you need to grow your business.</div>
+              <div class="subtitle-text" style="font-size: 18px;">The new employer experience delivering efficient recruitment, brand value, high ROI and a worthy candidate experience for just <span style="color: #0577FF;">£360</span> (includes VAT) per shortlisted candidate.</div>
+              <div class="features-container" style="align-self: stretch; height: 200px; margin-top: 24px; margin-bottom: 0; justify-content: flex-start; align-items: flex-start; gap: 108.84px; display: flex; position: relative">
               <div class="feature-item" style="width: 240px; height: 55px; position: relative">
                 <div class="feature-icon" style="left: 16px; top: 6px; position: absolute">
                   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -2575,9 +2569,57 @@
                   </div>
                 </div>
               </div>
+              <div data-layer="Div [framer-mdqWQ]" class="testimonial-card" style="width: 337px; height: 381.54px; position: absolute; background: #1C1C1C; overflow: hidden; right: -480px; top: -310.77px">
+                <div data-layer="Div" class="testimonial-border" style="width: 337px; height: 381.52px; left: 0px; top: 0px; position: absolute; border: 1px #767676 solid"></div>
+                <span class="quote-icon" style="position: absolute; left: 0; top: 0; z-index: 10; width: 48px; height: 48px;">
+                  <svg width="48" height="49" viewBox="0 0 48 49" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <g clip-path="url(#clip0_5_1336)">
+                      <path d="M48 0.640625H0V48.6406H48V0.640625Z" fill="#0577FF"/>
+                      <path d="M24.0493 22.377L22.6413 25.961H23.6013V29.257H20.5293V26.217L22.7053 22.377H24.0493ZM28.6893 22.377L27.2813 25.961H28.2413V29.257H25.1693V26.217L27.3453 22.377H28.6893Z" fill="white"/>
+                    </g>
+                    <defs>
+                      <clipPath id="clip0_5_1336">
+                        <rect width="48" height="48" fill="white" transform="translate(0 0.640625)"/>
+                      </clipPath>
+                    </defs>
+                  </svg>
+                </span>
+                <div class="testimonial-quote" style="width: 320px; margin-top: 8px; margin-left: 16px;">
+                  <span class="testimonial-text" style="display: block; margin-left: 24px; margin-right: 32px; text-indent: 38px; margin-top: 0px; line-height: 41.6px; font-family: 'Haffer-Regular', Helvetica, sans-serif; color: white; font-size: 32px;">The AI matching helped us find the perfect candidates in days, not weeks.</span>
+                </div>
+                <div class="author-info" style="position: absolute; left: 24px; bottom: 16px;">
+                  <div class="author-name" style="color: #0577FF; font-family: 'Haffer-Bold', Helvetica, sans-serif; font-size: 16px; line-height: 24px;">Natalie</div>
+                  <div class="author-membership" style="color: #0577FF; font-family: 'Haffer-Regular', Helvetica, sans-serif; font-size: 16px; line-height: 24px;">Member Since 2024</div>
+                </div>
+                <img class="author-image" src="images/TEST-AUTHOR-5.jpg" alt="Natalie's profile" style="position: absolute; right: 36px; bottom: 21px; width: 48px; height: 48px; object-fit: cover;" />
+              </div>
+              <div data-layer="Div [framer-mdqWQ]" class="testimonial-card" style="width: 337px; height: 381.54px; position: absolute; background: #1C1C1C; overflow: hidden; right: -816px; top: -310.77px">
+                <div data-layer="Div" class="testimonial-border" style="width: 337px; height: 381.52px; left: 0px; top: 0px; position: absolute; border: 1px #767676 solid"></div>
+                <span class="quote-icon" style="position: absolute; left: 0; top: 0; z-index: 10; width: 48px; height: 48px;">
+                  <svg width="48" height="49" viewBox="0 0 48 49" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <g clip-path="url(#clip0_5_1336)">
+                      <path d="M48 0.640625H0V48.6406H48V0.640625Z" fill="#0577FF"/>
+                      <path d="M24.0493 22.377L22.6413 25.961H23.6013V29.257H20.5293V26.217L22.7053 22.377H24.0493ZM28.6893 22.377L27.2813 25.961H28.2413V29.257H25.1693V26.217L27.3453 22.377H28.6893Z" fill="white"/>
+                    </g>
+                    <defs>
+                      <clipPath id="clip0_5_1336">
+                        <rect width="48" height="48" fill="white" transform="translate(0 0.640625)"/>
+                      </clipPath>
+                    </defs>
+                  </svg>
+                </span>
+                <div class="testimonial-quote" style="width: 320px; margin-top: 8px; margin-left: 16px;">
+                  <span class="testimonial-text" style="display: block; margin-left: 24px; margin-right: 32px; text-indent: 38px; margin-top: 0px; line-height: 41.6px; font-family: 'Haffer-Regular', Helvetica, sans-serif; color: white; font-size: 32px;">ZyndSelect made hiring fast and easy. We found great candidates in no time!</span>
+                </div>
+                <div class="author-info" style="position: absolute; left: 24px; bottom: 16px;">
+                  <div class="author-name" style="color: #0577FF; font-family: 'Haffer-Bold', Helvetica, sans-serif; font-size: 16px; line-height: 24px;">Sophie</div>
+                  <div class="author-membership" style="color: #0577FF; font-family: 'Haffer-Regular', Helvetica, sans-serif; font-size: 16px; line-height: 24px;">Member Since 2024</div>
+                </div>
+                <img class="author-image" src="images/TEST-AUTHOR-6.jpg" alt="Sophie's profile" style="position: absolute; right: 36px; bottom: 21px; width: 48px; height: 48px; object-fit: cover;" />
+              </div>
             </div>
           </div>
-          <a href="#apply" class="new-section-apply-button">
+          <a href="#apply" class="new-section-apply-button" style="margin-top: 280px;">
             <span class="new-section-apply-text">Apply to ZyndSelect</span>
             <span class="new-section-apply-icon">
               <span class="arrow arrow-old">
